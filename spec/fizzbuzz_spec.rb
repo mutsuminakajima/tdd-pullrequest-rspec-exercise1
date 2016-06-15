@@ -9,12 +9,35 @@ require 'fizzbuzz'
 describe 'FizzBuzz#say' do
   subject { FizzBuzz.new }
 
-  context '3の倍数でも5の倍数でもない場合' do
-    it "数字を返す_例2" do
-      expect( subject.say(2) ).to eq '2'
+  context '3の倍数の場合' do
+    [3,6].each do |num|
+      it "fizzを返す_#{num}の倍数の場合" do
+        expect( subject.convert(num) ).to eq 'fizz'
+      end
     end
-    it "数字を返す_例4" do
-      expect( subject.say(4) ).to eq '4'
+  end
+
+  context '5の倍数の場合' do
+    [5,10].each do |num|
+      it "fizzを返す_#{num}の倍数の場合" do
+        expect( subject.convert(num) ).to eq 'buzz'
+      end
+    end
+  end
+
+  context '15の倍数の場合' do
+    [15,30].each do |num|
+      it "fizzを返す_#{num}の倍数の場合" do
+        expect( subject.convert(num) ).to eq 'fizzbuzz'
+      end
+    end
+  end
+
+  context '3の倍数でも5の倍数でもない場合' do
+    [[2,"2"],[4,"4"]].each do |num,expected|
+      it "数字を返す#{num}," do
+        expect( subject.convert(num)).to eq expected
+      end
     end
   end
 end
